@@ -9,5 +9,5 @@ public class WorkoutCalorieTrackerApplication {
     public static void main(String[] args) {
         SpringApplication.run(WorkoutCalorieTrackerApplication.class, args);
     }
-
+    /// Homepage to view both microservices
 }
