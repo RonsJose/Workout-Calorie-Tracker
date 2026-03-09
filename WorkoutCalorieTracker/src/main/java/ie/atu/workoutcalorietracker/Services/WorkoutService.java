@@ -21,4 +21,15 @@ public class WorkoutService {
     public List<Workout> getAllWorkouts() {
         return workouts;
     }
+
+    public void deleteWorkout(Long id) {
+        workouts.removeIf(workout -> workout.getId()==(id));
+    }
+
+    public Workout getWorkoutById(Long id) {
+        return workouts.stream()
+                .filter(workout -> workout.getId()==(id))
+                .findFirst()
+                .orElseThrow(() -> new RuntimeException("Workout not found"));
+    }
 }
