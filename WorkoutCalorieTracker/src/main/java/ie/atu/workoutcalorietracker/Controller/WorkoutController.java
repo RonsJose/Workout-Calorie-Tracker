@@ -19,7 +19,7 @@ public class WorkoutController {
         this.service = service;
     }
 
-    @PostMapping
+    @PostMapping("/Create")
     public ResponseEntity<Workout> createWorkout(
             @Valid @RequestBody Workout workout){
 
@@ -27,8 +27,16 @@ public class WorkoutController {
         return ResponseEntity.status(HttpStatus.CREATED).body(newWorkout);
     }
 
-    @GetMapping
+    @GetMapping("/Show")
     public ResponseEntity<List<Workout>> getAllWorkouts() {
         return ResponseEntity.ok(service.getAllWorkouts());
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteWorkout(@PathVariable long id){
+        service.getWorkoutById(id);
+        service.deleteWorkout(id);
+        return ResponseEntity.noContent().build();
+    }
+
 }
