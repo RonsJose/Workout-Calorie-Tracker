@@ -1,5 +1,6 @@
 package ie.atu.workoutcalorietracker.Exception;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -27,6 +28,8 @@ public class GlobalExceptionHandler {
     public ResponseEntity<Map<String, String>> handleRuntimeExceptions(RuntimeException ex) {
         Map<String, String> errors = new HashMap<>();
         errors.put("message", ex.getMessage());
-        return ResponseEntity.badRequest().body(errors);
+        return ResponseEntity
+                .status(HttpStatus.NOT_FOUND)
+                .body(errors);
     }
 }
