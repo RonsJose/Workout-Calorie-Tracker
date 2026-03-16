@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -42,6 +43,16 @@ public class WorkoutController {
     @GetMapping("/id/{id}")
     public ResponseEntity<Workout> getWorkoutById(@PathVariable long id){
         return ResponseEntity.ok(service.getWorkoutById(id));
+    }
+
+    @GetMapping("/date/{date}")
+    public ResponseEntity<List<Workout>> getWorkoutByDate(@PathVariable LocalDate date){
+        return ResponseEntity.ok(service.getWorkoutsByDate(date));
+    }
+
+    @GetMapping("/name/{name}")
+    public ResponseEntity<List<Workout>> getWorkoutByName(@PathVariable String name){
+        return ResponseEntity.ok(service.getWorkoutsByName(name));
     }
 
 }

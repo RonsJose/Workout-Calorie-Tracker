@@ -4,6 +4,7 @@ import ie.atu.workoutcalorietracker.Model.Workout;
 import ie.atu.workoutcalorietracker.repository.WorkCalRepo;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,5 +40,12 @@ public class WorkoutService {
         return workCalRepository.findById(id).orElseThrow(() ->new RuntimeException("Workout not found"));
     }
 
+    public List<Workout> getWorkoutsByDate(LocalDate date) {
+        return workCalRepository.findByDate(date);
+    }
+
+    public List<Workout> getWorkoutsByName(String name) {
+        return workCalRepository.findByName(name);
+    }
 
 }
