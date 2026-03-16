@@ -39,4 +39,9 @@ public class WorkoutController {
         return ResponseEntity.noContent().build();
     }
 
+    @GetMapping("/id/{id}")
+    public ResponseEntity<Workout> getWorkoutById(@PathVariable long id){
+        return ResponseEntity.ok(service.getWorkoutById(id));
+    }
+
 }
