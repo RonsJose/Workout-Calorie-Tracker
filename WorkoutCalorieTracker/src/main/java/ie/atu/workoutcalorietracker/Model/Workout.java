@@ -22,7 +22,6 @@ public class Workout {
     @NotBlank(message="Workout name is required")
     private String name;
 
-    @NotBlank(message = "Workout date is required")
     private LocalDate date;
 
     @NotEmpty(message="Exercises cannot be empty")
