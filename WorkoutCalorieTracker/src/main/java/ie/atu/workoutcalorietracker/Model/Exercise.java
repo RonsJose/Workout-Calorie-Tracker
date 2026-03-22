@@ -18,10 +18,9 @@ public class Exercise {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @NotBlank(message ="Exercise name cannot be blank")
-    private String name;
+    @Enumerated(EnumType.STRING)
+    private ExerciseName name;
 
-    @Positive(message = "Sets must be greater than 0")
     @Valid
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "exercise_id")
