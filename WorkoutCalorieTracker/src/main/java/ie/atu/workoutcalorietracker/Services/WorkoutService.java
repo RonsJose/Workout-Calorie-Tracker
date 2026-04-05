@@ -1,6 +1,8 @@
 package ie.atu.workoutcalorietracker.Services;
 
+import ie.atu.workoutcalorietracker.Model.User;
 import ie.atu.workoutcalorietracker.Model.Workout;
+import ie.atu.workoutcalorietracker.client.LoginClient;
 import ie.atu.workoutcalorietracker.repository.WorkCalRepo;
 import org.springframework.stereotype.Service;
 
@@ -11,15 +13,18 @@ import java.util.List;
 @Service
 public class WorkoutService {
 
-    private List<Workout> workouts;
     private final WorkCalRepo workCalRepository;
+    private final LoginClient loginClient;
 
-    public WorkoutService(WorkCalRepo workCalRepository) {
+
+    public WorkoutService(WorkCalRepo workCalRepository, LoginClient loginClient) {
         this.workCalRepository = workCalRepository;
+        this.loginClient = loginClient;
     }
 
 
-    public Workout createWorkout(Workout workout) {
+    public Workout createWorkout(Workout workout, Long id) {
+        workout.setLoginID(id);
         workCalRepository.save(workout);
         return workout;
     }
@@ -46,6 +51,17 @@ public class WorkoutService {
 
     public List<Workout> getWorkoutsByName(String name) {
         return workCalRepository.findByName(name);
+    }
+
+    public List<Workout> getWorkoutsByLoginID(Long loginID) {
+        return workCalRepository.findByLoginID(loginID);
+    }
+
+    public Long login(String username, String password) {
+        User user = new User();
+        user.setUsername(username);
+        user.setPassword(password);
+        return loginClient.loginUser(user);
     }
 
 }

@@ -1,5 +1,6 @@
 package ie.atu.workoutcalorietracker.Model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
@@ -16,7 +17,8 @@ import java.util.List;
 public class Exercise {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
+    private Long id;
 
     @Enumerated(EnumType.STRING)
     private ExerciseName name;
