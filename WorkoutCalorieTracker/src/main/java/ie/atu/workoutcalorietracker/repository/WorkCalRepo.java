@@ -10,4 +10,5 @@ import java.util.List;
 public interface WorkCalRepo extends JpaRepository<Workout, Long> {
 List<Workout> findByDate(LocalDate date);
 List<Workout> findByName(String name);
+List<Workout> findByLoginID(Long loginID);
 }

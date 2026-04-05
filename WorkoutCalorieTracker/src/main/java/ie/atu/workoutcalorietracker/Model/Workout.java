@@ -1,5 +1,6 @@
 package ie.atu.workoutcalorietracker.Model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
@@ -17,7 +18,11 @@ import java.util.List;
 public class Workout {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
+    private Long id;
+
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
+    private Long loginID;
 
     @NotBlank(message="Workout name is required")
     private String name;

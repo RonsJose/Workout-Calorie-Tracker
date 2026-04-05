@@ -22,9 +22,9 @@ public class WorkoutController {
 
     @PostMapping("/Create")
     public ResponseEntity<Workout> createWorkout(
-            @Valid @RequestBody Workout workout){
-
-        Workout newWorkout = service.createWorkout(workout);
+            @Valid @RequestBody Workout workout, @RequestParam String username, @RequestParam String password){
+        Long id = service.login(username, password);
+        Workout newWorkout = service.createWorkout(workout,id);
         return ResponseEntity.status(HttpStatus.CREATED).body(newWorkout);
     }
 
@@ -55,4 +55,9 @@ public class WorkoutController {
         return ResponseEntity.ok(service.getWorkoutsByName(name));
     }
 
+    @GetMapping("/show/account")
+    public ResponseEntity<List<Workout>> getWorkoutByAccount(@RequestParam String username, @RequestParam String password){
+    Long id = service.login(username,password);
+    return ResponseEntity.ok(service.getWorkoutsByLoginID(id));
+    }
 }
