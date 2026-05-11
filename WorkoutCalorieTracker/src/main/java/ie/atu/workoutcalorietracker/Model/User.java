@@ -1,6 +1,6 @@
 package ie.atu.workoutcalorietracker.Model;
 
-import jakarta.persistence.Table;
+
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "users")
+
 public class User {
     private Long id;
 
